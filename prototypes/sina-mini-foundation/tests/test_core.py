@@ -12,6 +12,7 @@ from sina_mini_core import (  # noqa: E402
     InMemoryToolRegistry,
     Orchestrator,
     RunStatus,
+    Skill,
     SkillRegistry,
 )
 
@@ -49,6 +50,7 @@ class FoundationTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.status, RunStatus.SUCCEEDED)
         self.assertEqual(result.output, {"echo": "hello"})
         self.assertEqual(await self.memory.get("tests", result.request_id), "hello")
+        self.assertGreaterEqual(result.duration_ms, 0)
 
     async def test_failure_is_normalized_without_leaking_exception(self):
         self.agents.register(BrokenAgent())
@@ -69,6 +71,18 @@ class FoundationTests(unittest.IsolatedAsyncioTestCase):
         await self.memory.put("user-b", "preference", "y")
         self.assertEqual(await self.memory.get("user-a", "preference"), "x")
         self.assertEqual(await self.memory.get("user-b", "preference"), "y")
+
+    def test_request_rejects_empty_task(self):
+        with self.assertRaises(ValueError):
+            AgentRequest(task="   ")
+
+    def test_request_rejects_empty_agent_id(self):
+        with self.assertRaises(ValueError):
+            AgentRequest(task="hello", agent_id=" ")
+
+    def test_skill_requires_description(self):
+        with self.assertRaises(ValueError):
+            Skill(skill_id="summarize", description=" ")
 
 
 if __name__ == "__main__":
