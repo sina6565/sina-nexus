@@ -302,3 +302,16 @@ SINA NEXUS succeeds when it consistently produces:
 *Technology Research & Innovation Division of SINA AI STUDIO*
 
 **Research boldly. Verify rigorously. Build responsibly.**
+
+
+## 14. Project Execution Documents
+
+Use these documents as the operational source of truth for planning and governance:
+
+- [Roadmap](ROADMAP.md) — phases, research priorities, and exit criteria.
+- [Governance](GOVERNANCE.md) — authority, approvals, security, IP, and contribution rules.
+- [Workstreams & Branch Plan](WORKSTREAMS.md) — research tracks, branch naming, task lifecycle, and first execution queue.
+- [Research record template](evaluations/templates/RESEARCH_TEMPLATE.md) — standard evidence record.
+- [Product evaluation template](evaluations/templates/PRODUCT_REVIEW_TEMPLATE.md) — official product and eligibility review.
+- [Benchmark template](benchmarks/templates/BENCHMARK_TEMPLATE.md) — reproducible technical measurements.
+- [Integration proposal template](integration-proposals/TEMPLATE.md) — controlled transfer into a SINA product.
