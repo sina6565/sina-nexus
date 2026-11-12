@@ -1,0 +1,41 @@
+name: SINA MINI Foundation
+
+on:
+  push:
+    branches:
+      - feat/sina-mini-personal-agent-v1
+    paths:
+      - "prototypes/sina-mini-foundation/**"
+      - ".github/workflows/sina-mini-foundation.yml"
+  pull_request:
+    paths:
+      - "prototypes/sina-mini-foundation/**"
+      - ".github/workflows/sina-mini-foundation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: prototypes/sina-mini-foundation
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile package and tests
+        run: python -m compileall -q src tests examples
+      - name: Run unit tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+      - name: Run executable demo
+        env:
+          PYTHONPATH: src
+        run: python examples/run_demo.py
