@@ -20,6 +20,20 @@ class AgentRequest:
     user_id: str | None = None
     metadata: Mapping[str, Any] = field(default_factory=dict)
 
+    def __post_init__(self) -> None:
+        if not isinstance(self.task, str) or not self.task.strip():
+            raise ValueError("task must be a non-empty string")
+        if not isinstance(self.agent_id, str) or not self.agent_id.strip():
+            raise ValueError("agent_id must be a non-empty string")
+        if not isinstance(self.request_id, str) or not self.request_id.strip():
+            raise ValueError("request_id must be a non-empty string")
+        if self.user_id is not None and (
+            not isinstance(self.user_id, str) or not self.user_id.strip()
+        ):
+            raise ValueError("user_id must be None or a non-empty string")
+        if not isinstance(self.metadata, Mapping):
+            raise TypeError("metadata must be a mapping")
+
 
 @dataclass(frozen=True, slots=True)
 class AgentResult:
@@ -36,6 +50,12 @@ class Skill:
     skill_id: str
     description: str
     instructions: str = ""
+
+    def __post_init__(self) -> None:
+        if not self.skill_id.strip():
+            raise ValueError("skill_id must be a non-empty string")
+        if not self.description.strip():
+            raise ValueError("skill description must be a non-empty string")
 
 
 class Tool(Protocol):
