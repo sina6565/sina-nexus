@@ -31,6 +31,7 @@ SINA NEXUS is a dedicated R&D workspace. It is not a replacement for, fork of, o
 |---|---|
 | `sina6565/AI_Studio_AI` | Main SINA AI STUDIO product and production platform |
 | `sina6565/sina-nexus` | Research, experiments, benchmarks, prototypes, and technical decision records |
+| `sina6565/sina-pool-network` | Independent shared network connecting capability/compute providers with requesters through a SINA coordination layer |
 | `sina6565/sina-pool-network` | Separate network/marketplace initiative for connecting AI capability providers with users, subject to its own product and governance plan |
 
 The main platform remains the canonical production codebase. NEXUS experiments must not silently replace production components or introduce unverified dependencies.
@@ -118,6 +119,34 @@ Evaluate:
 - Storage, queues, networking, and job execution.
 - Performance, reliability, scaling, and cost controls.
 - Portable architectures and vendor-independent designs.
+
+
+### 3.7 Computer Use & Autonomous Execution
+
+Research agents that can perceive and operate desktop and browser interfaces, in addition to using structured APIs and tools. This is an execution-capability research track, not a plan to train a foundation language model from scratch.
+
+Research areas include:
+- Visual desktop and browser understanding.
+- Computer Use action loops: observe, plan, act, verify, and recover.
+- Browser and application automation.
+- Permission-scoped tool execution and sandboxing.
+- Human approval for sensitive or irreversible actions.
+- Audit logs, task replay, and failure recovery.
+- API-first execution where a supported API is safer and more reliable than GUI automation.
+
+### 3.8 SINA AI POOL NETWORK Research
+
+Research the architecture of a unified resource and capability pool that connects independent providers with requesters. The network is a separate product/repository, while NEXUS owns research, evaluation, and architecture proposals.
+
+Research areas include:
+- Provider onboarding and capability/resource registration.
+- Requester job submission and capability requirements.
+- Capability pools for image, video, audio, 3D/game, AI models, agents, APIs, and compute/GPU.
+- Matching, scheduling, routing, fallback, and workload placement.
+- Provider validation, health, reputation, quality, and service-level evidence.
+- Usage metering, transparent pricing/quotas, and settlement design.
+- Identity, permissions, data isolation, security, and dispute handling.
+- Open interfaces and adapters that avoid provider lock-in.
 
 ## 4. Initial Research Tracks
 
@@ -315,3 +344,13 @@ Use these documents as the operational source of truth for planning and governan
 - [Product evaluation template](evaluations/templates/PRODUCT_REVIEW_TEMPLATE.md) — official product and eligibility review.
 - [Benchmark template](benchmarks/templates/BENCHMARK_TEMPLATE.md) — reproducible technical measurements.
 - [Integration proposal template](integration-proposals/TEMPLATE.md) — controlled transfer into a SINA product.
+
+## 15. Newly Added Execution Tracks
+
+The following workstreams extend the research charter. They are planned work, not claims of implementation:
+
+- NEX-09–NEX-15: Computer Use, autonomous desktop agents, vision/GUI understanding, browser/app automation, action execution, agent orchestration, and human approval/security.
+- NEX-16–NEX-22: hybrid cloud infrastructure, GPU compute network, cloud workers, local AI runtime, compute orchestration, autoscaling/load management, and infrastructure cost optimization.
+- NEX-23: Core Integration Gateway for controlled transfer of validated research into the main SINA product.
+- NEX-24: SINA AI POOL NETWORK research and architecture, kept distinct from the implementation repository sina6565/sina-pool-network.
+
