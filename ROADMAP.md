@@ -115,3 +115,38 @@ Use this order unless the project owner changes it:
 - **Integrated** — merged into the target product and verified there.
 
 Never mark an item Verified or Integrated based only on a demo, marketing page, or untested code.
+
+## Phase 6 — Autonomous Computer Use & Execution
+
+- **NEX-09 — SINA Computer Use Lab:** end-to-end observe/plan/act/verify experiments.
+- **NEX-10 — SINA Autonomous Desktop Agent:** task execution across desktop applications.
+- **NEX-11 — SINA Vision & GUI Understanding:** screen perception, UI element grounding, and state recognition.
+- **NEX-12 — SINA Browser & App Automation:** browser and application workflows, preferring official APIs when suitable.
+- **NEX-13 — SINA Action & Execution Engine:** safe action dispatch, retries, state checks, and recovery.
+- **NEX-14 — SINA Agent Orchestration:** coordination of planner, executor, tools, and specialist agents.
+- **NEX-15 — SINA Human Approval & Security:** permissions, approval gates, audit trails, and sandbox boundaries.
+
+**Exit criteria:** reproducible task success measurements, explicit permission boundaries, safe handling of sensitive actions, and documented failure/recovery behavior.
+
+## Phase 7 — Hybrid Cloud & Private Compute
+
+- **NEX-16 — SINA Hybrid Cloud Infrastructure:** local-first control plane with optional elastic cloud execution.
+- **NEX-17 — SINA GPU Compute Network:** evaluate compatible GPU resources and workload placement.
+- **NEX-18 — SINA Cloud Worker System:** stateless, queue-driven workers for scalable jobs.
+- **NEX-19 — SINA Local AI Runtime:** local model and tool runtime with provider-independent interfaces.
+- **NEX-20 — SINA Compute Orchestrator:** resource-aware scheduling across local and remote compute.
+- **NEX-21 — SINA Auto Scaling & Load Management:** backpressure, concurrency limits, health-aware scaling, and graceful degradation.
+- **NEX-22 — SINA Infrastructure Cost Optimizer:** budgets, quotas, usage visibility, and cost-aware routing.
+
+**Constraints:** prioritize free/open-source and local-first options. Do not provision paid cloud resources or activate paid services without explicit approval. Cloud execution must be optional; core control and provider independence remain under SINA governance.
+
+**Exit criteria:** measured workload profiles, tested local/cloud failover behavior, queue and concurrency tests, and a transparent cost model.
+
+## Phase 8 — Product Integration & Shared Network Research
+
+- **NEX-23 — SINA Core Integration Gateway:** define versioned contracts, adapters, compatibility checks, and a controlled path for approved NEXUS capabilities to reach the main SINA product.
+- **NEX-24 — SINA AI POOL NETWORK Research:** define the shared provider/requester network, capability pools, matching and scheduling, validation, metering, reputation, and governance. Implementation belongs in the separate sina-pool-network repository.
+
+The pool network connects providers (GPU/compute, models, APIs, tools, and agents) with requesters (users, organizations, developers, and authorized agents) through a SINA-managed registry and pool engine. Initial implementation must not depend on blockchain or tokens. Pricing and settlement remain explicit design decisions and must not trigger spending without approval.
+
+**Exit criteria:** an architecture decision record, threat model, API contracts, provider/requester lifecycle, and a staged MVP plan approved by the project owner.
