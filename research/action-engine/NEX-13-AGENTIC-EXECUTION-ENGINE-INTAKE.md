@@ -253,3 +253,40 @@ These ranges are not additive in every staffing scenario and depend on existing 
 | R&D intake documented | Yes, in this branch |
 
 **Current recommendation:** Prototype Further. First recover the original files and inspect the canonical SINA architecture. The supplied design is a valuable execution-lifecycle reference, but the strategic opportunity is to evolve it into a safe, observable, permission-aware execution layer under SINA's own Orchestrator—not to adopt the small Python server as the product core.
+
+
+## 11. Initial compatibility evidence from the canonical SINA product repository
+
+A read-only source inspection was performed against `sina6565/AI_Studio_AI` on `main`. This is repository evidence, not a local build or test run.
+
+### Confirmed from source
+
+- `backend/src/orchestrator/Orchestrator.ts` already defines `OrchestratorRequest` and `OrchestratorResponse`, creates persisted jobs, selects provider/local execution paths, and enqueues work through `jobQueueProcessor`.
+- The same Orchestrator contains asynchronous `executeJob`, terminal-state checks, progress updates, bounded retry handling, cancellation handling, status retrieval, and a `cancelJob` operation.
+- `backend/src/api/routes/jobs.ts` already exposes authenticated job creation and retrieval. It uses `authenticateToken`, validates request schemas, checks project ownership, and scopes job listing to the authenticated user.
+- The repository README documents the existing Express/TypeScript, MongoDB/Mongoose, Redis + Bull architecture and explicitly instructs maintainers to preserve the existing Orchestrator and avoid replacing it with an autonomous-agent framework without evidence and approved migration.
+- The same README describes a specialized worker/safe execution boundary and cautions against unsafe execution of generated or user-supplied executable content in the API process.
+
+### Immediate consequence
+
+The supplied Python `Engine` / SQLite / synchronous HTTP server is **not** a missing production core to be transplanted. SINA already has a job orchestration and asynchronous queue path. The valuable research contribution is more likely to be the **capability layer around safe tool execution**: typed tool manifests, permission scopes, approval-bound actions, execution verification, event/trace correlation, and recovery contracts that fit the current TypeScript Orchestrator and Bull worker architecture.
+
+### What remains unverified
+
+- Full runtime behavior and deployment health of the current queue/worker path.
+- Whether all desired Agent Registry, Tool Registry, Memory, MCP, Approval Manager, and OpenTelemetry capabilities are implemented and wired end-to-end.
+- Current test results for the exact source commit inspected.
+- Whether any existing job/event schema can represent fine-grained tool-step events without migration.
+
+### Next compatibility inspection
+
+Inspect the following exact files and tests before proposing an adapter:
+- `backend/src/jobs/JobQueueProcessor.ts`
+- `backend/src/jobs/recovery.ts`
+- `backend/src/database/models/Job.ts` (or the actual job model path)
+- `backend/src/orchestrator/Orchestrator.ts`
+- `backend/src/api/routes/jobs.ts`
+- `backend/tests/orchestrator.test.ts`
+- Relevant auth, validation, logging, and sandbox modules.
+
+**Architecture conclusion (preliminary):** retain the existing SINA Orchestrator, MongoDB job model, Redis/Bull queue, and authenticated jobs API. Investigate an additive, permission-aware execution-step contract and worker/tool adapter. No production code change is authorized by this research intake.
